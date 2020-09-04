@@ -1,9 +1,9 @@
-#include "ml/CyTensor.hpp"
-#include "ml/xlinalg.hpp"
-#include "ml/TypeConvert.hpp"
+#include "CyTensor.hpp"
+#include "xlinalg.hpp"
+#include "TypeConvert.hpp"
 #include "torcyx.hpp"
 #include "utils/utils.hpp"
-#include "utils/utils_internal_interface.hpp"
+//#include "utils/utils_internal_interface.hpp"
 #include <vector>
 #include "utils/vec_print.hpp"
 

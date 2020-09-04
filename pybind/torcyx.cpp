@@ -10,11 +10,9 @@
 #include <pybind11/buffer_info.h>
 #include <pybind11/functional.h>
 
-//#include "cytnx.hpp"
 #include "torcyx.hpp"
 #include "complex.h"
-//#include <torch/python.h>
-//#include <torch/torch.h>
+#include <torch/extension.h> //v1.6 need to link explicitly against libtorch_python.so for this to work. 
 
 using namespace torcyx;
 namespace py = pybind11;
@@ -316,7 +314,7 @@ PYBIND11_MODULE(torcyx,m){
     
     py::add_ostream_redirect(m, "ostream_redirect");    
 
-    /*
+    
     py::class_<CyTensor>(m,"CyTensor")
                 .def(py::init<>())
                 .def(py::init<const torch::Tensor&, const cytnx_uint64&, const bool &>(),py::arg("Tin"),py::arg("rowrank"),py::arg("is_diag")=false)
@@ -325,8 +323,8 @@ PYBIND11_MODULE(torcyx,m){
                                     //self.
                                     std::cout << dtype << std::endl;
                                     std::cout << device << std::endl;
-                                 },py::arg("bonds"),py::arg("labels")=std::vector<cytnx_int64>(),py::arg("rowrank")=(cytnx_int64)(-1),py::arg("is_diag")=false, py::arg("dtype"),py::arg("device"),py::arg("requres_grad"));
-    */
+                                 },py::arg("bonds"),py::arg("labels")=std::vector<cytnx_int64>(),py::arg("rowrank")=(cytnx_int64)(-1),py::arg("is_diag")=false, py::arg("dtype"),py::arg("device"),py::arg("requres_grad"))
+                .def("test",[](CyTensor &self, torch::Tensor A){std::cout << A << std::endl;}); 
                 //.def("set_name",&UniTensor::set_name)
                 //.def("set_label",&UniTensor::set_label,py::arg("idx"),py::arg("new_label"))
                 //.def("set_labels",&UniTensor::set_labels,py::arg("new_labels"))

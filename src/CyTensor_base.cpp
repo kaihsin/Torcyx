@@ -1,6 +1,7 @@
-#include "ml/CyTensor.hpp"
-#include "ml/xlinalg.hpp"
+#include "CyTensor.hpp"
+#include "xlinalg.hpp"
 #include "torcyx.hpp"
+
 #include <string>
 #include "utils/utils.hpp"
 

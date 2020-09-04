@@ -1,2 +1,0 @@
-/usr/bin/ar qc libtorcyx.a  CMakeFiles/torcyx.dir/src/tr.cpp.o
-/usr/bin/ranlib libtorcyx.a

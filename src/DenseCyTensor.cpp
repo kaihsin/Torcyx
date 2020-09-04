@@ -1,15 +1,17 @@
-#include "ml/CyTensor.hpp"
-#include "ml/xlinalg.hpp"
-#include "ml/TypeConvert.hpp"
+#include "TypeConvert.hpp"
+#include "CyTensor.hpp"
+#include "xlinalg.hpp"
 #include "torcyx.hpp"
+
 #include "utils/utils.hpp"
-#include "utils/utils_internal_interface.hpp"
+//#include "utils/utils_internal_interface.hpp"
 #include <algorithm>
 #include <utility>
 #include <vector>
 namespace torcyx{
-        using cytnx::vec_unique;        
-        namespace utils_internal=cytnx::utils_internal;
+        using cytnx::vec_unique;       
+        using cytnx::vec_range; 
+        //namespace utils_internal=cytnx::utils_internal;
         //void DenseCyTensor::Init(const std::vector<Bond> &bonds, const std::vector<cytnx_int64> &in_labels, const cytnx_int64 &rowrank, const unsigned int &dtype,const int &device, const bool &is_diag){
         //        auto option = type_converter.Cy2Tor(dtype,device);
         //        this->Init(bonds,in_labels,rowrank,is_diag,option);
@@ -114,7 +116,7 @@ namespace torcyx{
                     bds[1] = bds[0].clone();
                     this->_bonds = bds;
                     this->_block = in_tensor;
-                    this->_labels = utils_internal::range_cpu<cytnx_int64>(2);
+                    this->_labels = vec_range<cytnx_int64>(2);
                     cytnx_error_msg(rowrank != 1,"[ERROR][Init_by_tensor] rowrank should be 1 for CyTensor with is_diag=True.%s","\n");
                     this->_rowrank = rowrank;
                     this->_is_diag = true;
@@ -126,7 +128,7 @@ namespace torcyx{
                     }
                     this->_bonds = bds;
                     this->_block = in_tensor;
-                    this->_labels = utils_internal::range_cpu<cytnx_int64>(in_tensor.sizes().size());
+                    this->_labels = vec_range<cytnx_int64>(in_tensor.sizes().size());
                     cytnx_error_msg(rowrank > in_tensor.sizes().size(),"[ERROR][Init_by_tensor] rowrank exceed the rank of Tensor.%s","\n");
                     this->_rowrank = rowrank;
                 }

@@ -2,41 +2,13 @@
 #define _H_TORCYX_
 
 #include <torch/torch.h>
-#include "cytnx.hpp"
-//#include "Symmetry.hpp";
-//#include "Bond.hpp";
-//#include "Accessor.hpp";
-//#include "intrusive_ptr_base.hpp";
-//#include "Type.hpp"
-//#include "Device.hpp"
-
-namespace torcyx{
-    cytnx::Tensor func();
-    /*
-    using cytnx::cytnx_double;
-    using cytnx::cytnx_float;
-    using cytnx::cytnx_uint64;
-    using cytnx::cytnx_uint32;
-    using cytnx::cytnx_uint16;
-    using cytnx::cytnx_int64;
-    using cytnx::cytnx_int32;
-    using cytnx::cytnx_int16;
-    using cytnx::cytnx_size_t;
-    using cytnx::cytnx_complex64;
-    using cytnx::cytnx_complex128;
-    using cytnx::cytnx_bool;
+#include "cytnx.hpp" //#include "Symmetry.hpp"; //#include "Bond.hpp"; //#include "Accessor.hpp"; //#include "Type.hpp";
 
 
-    using cytnx::intrusive_ptr_base;
-    using cytnx::Symmetry;
-    using cytnx::Bond;
-    using cytnx::bondType;
-    using cytnx::Accessor;
-    */
-};
-
-//#include "TypeConvert.hpp"
-//#include "CyTensor.hpp"
+#include "TypeConvert.hpp" // all the cytnx classes.
+#include "CyTensor.hpp"
 //#include "xlinalg.hpp"
+
+
 
 #endif

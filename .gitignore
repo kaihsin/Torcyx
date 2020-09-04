@@ -3,4 +3,5 @@
 *.so
 __pycache__
 .python-version
-/build*
+build/
+test/

@@ -2,11 +2,29 @@
 #define _TYPECONVERT_H_
 
 
+// cytnx:
 #include "Type.hpp"
 #include "Device.hpp"
+#include "cytnx.hpp"
+
+// pytorch:
 #include <torch/torch.h>
 
 namespace torcyx{
+    
+    using cytnx::cytnx_double;
+    using cytnx::cytnx_float;
+    using cytnx::cytnx_uint64;
+    using cytnx::cytnx_uint32;
+    using cytnx::cytnx_uint16;
+    using cytnx::cytnx_int64;
+    using cytnx::cytnx_int32;
+    using cytnx::cytnx_int16;
+    using cytnx::cytnx_size_t;
+    using cytnx::cytnx_complex64;
+    using cytnx::cytnx_complex128;
+    using cytnx::cytnx_bool;
+
     using cytnx::Type;
     using cytnx::Device;
 
@@ -27,7 +45,12 @@ namespace torcyx{
     /// @endcond
 
 }
-
+namespace torcyx{
+    using cytnx::Symmetry;
+    using cytnx::Bond;
+    using cytnx::bondType;
+    using cytnx::Accessor; 
+}
 
 
 #endif

@@ -28,6 +28,7 @@ set(CMAKE_PREFIX_PATH ${CMAKE_PREFIX_PATH} ${TORCH_CMAKE_PATH_C})
 message(STATUS ${CMAKE_PREFIX_PATH})
 
 
+
 ## General setting
 include(cmake/target_sources_local.cmake)
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_CURRENT_SOURCE_DIR}/cmake/Modules")
@@ -123,6 +124,7 @@ message(STATUS ${COMPILE_DEFINITIONS})
 find_package(Torch REQUIRED)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wformat=0 -Wno-c++11-narrowing -w")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${TORCH_CXX_FLAGS}") 
+message(STATUS "pytorch: ${TORCH_INSTALL_PREFIX}")
 #set_property(TARGET torcyx PROPERTY CXX_STANDARD 14)
 
 ## cytnx flags:
@@ -150,7 +152,7 @@ string(REPLACE " " ";" CYTNX_LINK "${CYTNX_LINK_C}")
 set(CYTNX_LIBRARIES "${CYTNX_LIBRARIES};${CYTNX_LINK}")
 message(STATUS "${CYTNX_LIBRARIES}")
 
-target_link_libraries(torcyx ${TORCH_LIBRARIES})
+target_link_libraries(torcyx ${TORCH_LIBRARIES} ${TORCH_INSTALL_PREFIX}/lib/libtorch_python.so)
 target_link_libraries(torcyx ${CYTNX_LIBRARIES})
 set_property(TARGET torcyx PROPERTY CXX_STANDARD 14)
 

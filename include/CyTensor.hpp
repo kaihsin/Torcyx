@@ -1,9 +1,17 @@
 #ifndef _H_CyTensor_
 #define _H_CyTensor_
 
-//#include "Tensor.hpp"
-#include <torch/torch.h>
+
+
+
+//cytnx
+#include "TypeConvert.hpp"
 #include "intrusive_ptr_base.hpp"
+
+
+//pytorch
+#include <torch/torch.h>
+
 #include <iostream>
 #include <vector>
 #include <map>
@@ -11,13 +19,12 @@
 #include <initializer_list>
 #include <fstream>
 #include <algorithm>
-#include "torcyx.hpp"
-//#include "linalg.hpp"
 
-//namespace cytnx{
+
 namespace torcyx{ 
-    //using namespace cytnx;
-        using cytnx::vec_clone;   
+        using cytnx::vec_clone;  
+        using cytnx::intrusive_ptr_base;
+ 
         std::vector<torch::Tensor> vec_clone(const std::vector<torch::Tensor>& in_vec);//speciailization
 
         /// @cond 
