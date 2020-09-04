@@ -319,12 +319,12 @@ PYBIND11_MODULE(torcyx,m){
                 .def(py::init<>())
                 .def(py::init<const torch::Tensor&, const cytnx_uint64&, const bool &>(),py::arg("Tin"),py::arg("rowrank"),py::arg("is_diag")=false)
                 //.def(py::init<const std::vector<Bond> &, const std::vector<cytnx_int64> &, const cytnx_int64 &, const bool &, const torch::TensorOptions &>(),py::arg("bonds"),py::arg("labels")=std::vector<cytnx_int64>(),py::arg("rowrank")=(cytnx_int64)(-1),py::arg("is_diag")=false,py::arg("options")=torch::TensorOptions())
-                .def("c_init",[](CyTensor &self,const std::vector<Bond> &bonds, const std::vector<cytnx_int64> & labels, const cytnx_int64 &rowrank, const bool &is_diag, const std::string &dtype, const std::string &device, const bool &requres_grad){
-                                    //self.
+                .def("c_init",[](CyTensor &self,const std::vector<Bond> &bonds, const std::vector<cytnx_int64> & labels, const cytnx_int64 &rowrank, const bool &is_diag, const std::string &dtype, const std::string &device, const bool &requires_grad){
+                                    //self.`
                                     std::cout << dtype << std::endl;
                                     std::cout << device << std::endl;
-                                 },py::arg("bonds"),py::arg("labels")=std::vector<cytnx_int64>(),py::arg("rowrank")=(cytnx_int64)(-1),py::arg("is_diag")=false, py::arg("dtype"),py::arg("device"),py::arg("requres_grad"))
-                .def("test",[](CyTensor &self, torch::Tensor A){std::cout << A << std::endl;}); 
+                                 },py::arg("bonds"),py::arg("labels")=std::vector<cytnx_int64>(),py::arg("rowrank")=(cytnx_int64)(-1),py::arg("is_diag")=false, py::arg("dtype")=std::string("torch.float32"),py::arg("device")=std::string("cpu"),py::arg("requres_grad")=false)
+                //.def("test",[](CyTensor &self, torch::Tensor A){std::cout << A << std::endl;}); 
                 //.def("set_name",&UniTensor::set_name)
                 //.def("set_label",&UniTensor::set_label,py::arg("idx"),py::arg("new_label"))
                 //.def("set_labels",&UniTensor::set_labels,py::arg("new_labels"))

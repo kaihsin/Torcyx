@@ -318,7 +318,7 @@ message(STATUS "  - Python Library    : ${PYTHON_LIBRARY}")
 
 FILE(APPEND "${CMAKE_BINARY_DIR}/linkflags.tmp" "${TORCH_LIBRARIES}\n" "") 
 FILE(APPEND "${CMAKE_BINARY_DIR}/linkflags.tmp" "${CYTNX_LIBRARIES}\n" "")
-FILE(APPEND "${CMAKE_BINARY_DIR}/cytnxpath.tmp" "${CYTNX_PATH}" "")
+FILE(WRITE "${CMAKE_BINARY_DIR}/cytnxpath.tmp" "${CYTNX_PATH}" "")
 
 if(BUILD_DOC)
   message( STATUS " Build Documentation: YES")
