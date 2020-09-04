@@ -133,7 +133,7 @@ COMMAND bash -c "python -c 'import sys,os;sys.path.append(os.path.expanduser(\"$
 OUTPUT_VARIABLE CYTNX_INC_PATH_C
 )
 string(REGEX REPLACE "\n$" "" CYTNX_INC_PATH "${CYTNX_INC_PATH_C}")
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -I${CYTNX_INC_PATH}")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -I${CYTNX_INC_PATH} -pthread")
 message(STATUS ${CMAKE_CXX_FLAGS})
 #--------
 execute_process (
