@@ -1,0 +1,10 @@
+/home/kaywu/Dropbox/Torcyx/test/lib/libtorcyx.a
+/home/kaywu/Dropbox/Torcyx/test/torcyx/__pycache__/__init__.cpython-37.pyc
+/home/kaywu/Dropbox/Torcyx/test/torcyx/__init__.py
+/home/kaywu/Dropbox/Torcyx/test/torcyx/torcyx.cpython-37m-x86_64-linux-gnu.so
+/home/kaywu/Dropbox/Torcyx/test/include/xlinalg.hpp
+/home/kaywu/Dropbox/Torcyx/test/include/CyTensor.hpp
+/home/kaywu/Dropbox/Torcyx/test/include/torcyx.hpp
+/home/kaywu/Dropbox/Torcyx/test/include/TypeConvert.hpp
+/home/kaywu/Dropbox/Torcyx/test/torcyx/linkflags.tmp
+/home/kaywu/Dropbox/Torcyx/test/torcyx/cytnxpath.tmp

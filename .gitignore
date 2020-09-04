@@ -1,0 +1,6 @@
+*.e
+*.o
+*.so
+__pycache__
+.python-version
+/build*
