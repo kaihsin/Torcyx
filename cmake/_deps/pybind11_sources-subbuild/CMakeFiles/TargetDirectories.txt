@@ -1,3 +1,0 @@
-/home/kaywu/Dropbox/Cytnx/cmake/_deps/pybind11_sources-subbuild/CMakeFiles/rebuild_cache.dir
-/home/kaywu/Dropbox/Cytnx/cmake/_deps/pybind11_sources-subbuild/CMakeFiles/pybind11_sources-populate.dir
-/home/kaywu/Dropbox/Cytnx/cmake/_deps/pybind11_sources-subbuild/CMakeFiles/edit_cache.dir

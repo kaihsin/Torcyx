@@ -1,0 +1,17 @@
+Metadata-Version: 1.2
+Name: torcyx
+Version: 0.1
+Summary: Project Torcyx
+Home-page: UNKNOWN
+Maintainer: Kai-Hsin Wu
+Maintainer-email: kaihsinwu@gmail.com
+License: GNU LGPL
+Description: This package provides torcyx: Cytnx extension with ML capability base on pytorch 
+Platform: POSIX
+Platform: MacOS
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: License :: OSI Approved :: GNU Lesser General Public License v3 or later (LGPLv3+)
+Classifier: Topic :: Scientific/Engineering :: Physics
+Classifier: Topic :: Scientific/Engineering :: Mathematics
+Classifier: Operating System :: MacOS :: MacOS X
+Classifier: Operating System :: POSIX :: Linux

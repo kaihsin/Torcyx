@@ -1,0 +1,46 @@
+package:
+  name: torcyx
+  version: "0.1"
+
+source:
+  path: ../
+
+build:
+  number: 0
+
+
+requirements:
+  build:
+    - python {{ python }}
+    - {{ compiler("c") }}
+    - {{ compiler("cxx") }}
+    - cytnx
+    - pytorch >=1.6
+    - torchvision
+    - cpuonly
+    - setuptools
+    - cmake  
+    - pybind11 
+
+  host:
+    - python 
+    - cytnx
+    - pytorch >=1.6
+    - cpuonly
+    - torchvision
+    - setuptools
+    - cmake  
+    - pybind11 
+
+
+  run:
+    - python
+    - cytnx
+    - pytorch >=1.6
+    - cpuonly
+    - torchvision
+    - setuptools
+    - cmake  
+    - pybind11 
+
+about:
