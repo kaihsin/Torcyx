@@ -130,6 +130,13 @@ namespace torcyx{
                     cytnx_error_msg(tmp.size() != new_labels.size(), "[ERROR][set_labels][CyTensor] %s\n","the input labels cannot contain duplicated element(s).");
                     this->_labels = new_labels;
             }
+            boost::intrusive_ptr<CyTensor_base> CyTensor_base::permute(const std::vector<cytnx_int64> &mapper,const cytnx_int64 &rowrank, const bool &by_label){
+                cytnx_error_msg(true,"[ERROR] fatal internal, cannot call on a un-initialize CyTensor_base%s","\n");
+                return nullptr;
+            }
+            void CyTensor_base::permute_(const std::vector<cytnx_int64> &mapper, const cytnx_int64 &rowrank, const bool &by_label){
+                cytnx_error_msg(true,"[ERROR] fatal internal, cannot call on a un-initialize CyTensor_base%s","\n");
+            }
             /*
              
             std::string      CyTensor_base::dtype_str() const{
@@ -139,13 +146,6 @@ namespace torcyx{
             std::string     CyTensor_base::device_str() const{
                 cytnx_error_msg(true,"[ERROR] fatal internal, cannot call on a un-initialize CyTensor_base%s","\n");
                 return std::string("");
-            }
-            boost::intrusive_ptr<CyTensor_base> CyTensor_base::permute(const std::vector<cytnx_int64> &mapper,const cytnx_int64 &rowrank, const bool &by_label){
-                cytnx_error_msg(true,"[ERROR] fatal internal, cannot call on a un-initialize CyTensor_base%s","\n");
-                return nullptr;
-            }
-            void CyTensor_base::permute_(const std::vector<cytnx_int64> &mapper, const cytnx_int64 &rowrank, const bool &by_label){
-                cytnx_error_msg(true,"[ERROR] fatal internal, cannot call on a un-initialize CyTensor_base%s","\n");
             }
 
             boost::intrusive_ptr<CyTensor_base> CyTensor_base::contiguous_(){

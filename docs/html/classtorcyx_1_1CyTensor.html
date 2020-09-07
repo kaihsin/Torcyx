@@ -164,6 +164,10 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:af74d422a3197e6f4c6a03d103689f11a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abde522a527703333b60e442b17330045"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classtorcyx_1_1CyTensor.html">CyTensor</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtorcyx_1_1CyTensor.html#abde522a527703333b60e442b17330045">to</a> (const torch::Device &amp;<a class="el" href="classtorcyx_1_1CyTensor.html#a595699b634a4aa03fda16ee8d1463d13">device</a>, const bool &amp;non_blocking=false) const</td></tr>
 <tr class="separator:abde522a527703333b60e442b17330045"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa71f01f2aa7819ca01246908fe39c1ee"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classtorcyx_1_1CyTensor.html">CyTensor</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtorcyx_1_1CyTensor.html#aa71f01f2aa7819ca01246908fe39c1ee">permute</a> (const std::vector&lt; cytnx_int64 &gt; &amp;mapper, const cytnx_int64 &amp;<a class="el" href="classtorcyx_1_1CyTensor.html#a100c5cbc4a4b35170fbf4cfa771a2e74">rowrank</a>=-1, const bool &amp;by_label=false)</td></tr>
+<tr class="separator:aa71f01f2aa7819ca01246908fe39c1ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aee8db2ad9a4f8c1688ac45b4223e87f3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtorcyx_1_1CyTensor.html#aee8db2ad9a4f8c1688ac45b4223e87f3">permute_</a> (const std::vector&lt; cytnx_int64 &gt; &amp;mapper, const cytnx_int64 &amp;<a class="el" href="classtorcyx_1_1CyTensor.html#a100c5cbc4a4b35170fbf4cfa771a2e74">rowrank</a>=-1, const bool &amp;by_label=false)</td></tr>
+<tr class="separator:aee8db2ad9a4f8c1688ac45b4223e87f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>An Enhanced tensor specifically designed for physical Tensor network simulation. </p>
@@ -1009,6 +1013,90 @@ Public Member Functions</h2></td></tr>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa71f01f2aa7819ca01246908fe39c1ee"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa71f01f2aa7819ca01246908fe39c1ee">&#9670;&nbsp;</a></span>permute()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classtorcyx_1_1CyTensor.html">CyTensor</a> torcyx::CyTensor::permute </td>
+          <td>(</td>
+          <td class="paramtype">const std::vector&lt; cytnx_int64 &gt; &amp;&#160;</td>
+          <td class="paramname"><em>mapper</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const cytnx_int64 &amp;&#160;</td>
+          <td class="paramname"><em>rowrank</em> = <code>-1</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const bool &amp;&#160;</td>
+          <td class="paramname"><em>by_label</em> = <code>false</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aee8db2ad9a4f8c1688ac45b4223e87f3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aee8db2ad9a4f8c1688ac45b4223e87f3">&#9670;&nbsp;</a></span>permute_()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void torcyx::CyTensor::permute_ </td>
+          <td>(</td>
+          <td class="paramtype">const std::vector&lt; cytnx_int64 &gt; &amp;&#160;</td>
+          <td class="paramname"><em>mapper</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const cytnx_int64 &amp;&#160;</td>
+          <td class="paramname"><em>rowrank</em> = <code>-1</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const bool &amp;&#160;</td>
+          <td class="paramname"><em>by_label</em> = <code>false</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
   </td>

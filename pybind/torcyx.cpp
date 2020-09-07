@@ -71,7 +71,7 @@ PYBIND11_MODULE(torcyx,m){
                 //.def("device_str",&UniTensor::device_str) //hips
                 .def("name",&CyTensor::name)
                 .def("is_blockform",&CyTensor::is_blockform)
-
+                .def("is_contiguous", &CyTensor::is_contiguous)
 
                 .def("get_block", [](const CyTensor &self, const cytnx_uint64&idx){
                                         return self.get_block(idx);
@@ -109,6 +109,34 @@ PYBIND11_MODULE(torcyx,m){
                                     //cytnx_error_msg(self.device() == device, "[ERROR][pybind][to_diffferent_device] same device for to() should be handle in python side.%s","\n");
                                     return self.to(torch::python::detail::py_object_to_device(device),non_blocking);
                                      }, py::arg("device"),py::arg("non_blocking")=false)
+
+                .def("permute_",[](CyTensor &self, const std::vector<cytnx::cytnx_int64> &c_args, py::kwargs kwargs){
+                    cytnx_int64 rowrank = -1;
+                    bool by_label = false;
+                    if(kwargs){
+                        if(kwargs.contains("rowrank")){
+                            rowrank = kwargs["rowrank"].cast<cytnx_int64>();
+                        }
+                        if(kwargs.contains("by_label")){ 
+                            by_label = kwargs["by_label"].cast<bool>();
+                        }
+                    }
+                    self.permute_(c_args,rowrank,by_label);
+                })
+                .def("permute",[](CyTensor &self,const std::vector<cytnx::cytnx_int64> &c_args, py::kwargs kwargs)->CyTensor{
+                    cytnx_int64 rowrank = -1;
+                    bool by_label = false;
+                    if(kwargs){
+                        if(kwargs.contains("rowrank")){
+                            rowrank = kwargs["rowrank"].cast<cytnx_int64>();
+                        }
+                        if(kwargs.contains("by_label")){ 
+                            by_label = kwargs["by_label"].cast<bool>();
+                        }
+                    }
+                    return self.permute(c_args,rowrank,by_label);
+                })
+
                 /*
                 .def("reshape",[](UniTensor &self, py::args args, py::kwargs kwargs)->UniTensor{
                     std::vector<cytnx::cytnx_int64> c_args = args.cast< std::vector<cytnx::cytnx_int64> >();
@@ -289,7 +317,6 @@ PYBIND11_MODULE(torcyx,m){
                 .def("set_elem",&f_UniTensor_setelem_scal_b)
 
 
-                .def("is_contiguous", &UniTensor::is_contiguous)
                 .def("is_diag",&UniTensor::is_diag)
                 .def("is_tag" ,&UniTensor::is_tag)
                 .def("is_braket_form",&UniTensor::is_braket_form)
@@ -306,32 +333,6 @@ PYBIND11_MODULE(torcyx,m){
                 //.def("permute",&UniTensor::permute,py::arg("mapper"),py::arg("rowrank")=(cytnx_int64)-1,py::arg("by_label")=false)
                 //.def("permute_",&UniTensor::permute_,py::arg("mapper"),py::arg("rowrank")=(cytnx_int64)-1,py::arg("by_label")=false)
 
-                .def("permute_",[](UniTensor &self, const std::vector<cytnx::cytnx_int64> &c_args, py::kwargs kwargs){
-                    cytnx_int64 rowrank = -1;
-                    bool by_label = false;
-                    if(kwargs){
-                        if(kwargs.contains("rowrank")){
-                            rowrank = kwargs["rowrank"].cast<cytnx_int64>();
-                        }
-                        if(kwargs.contains("by_label")){ 
-                            by_label = kwargs["by_label"].cast<bool>();
-                        }
-                    }
-                    self.permute_(c_args,rowrank,by_label);
-                })
-                .def("permute",[](UniTensor &self,const std::vector<cytnx::cytnx_int64> &c_args, py::kwargs kwargs)->UniTensor{
-                    cytnx_int64 rowrank = -1;
-                    bool by_label = false;
-                    if(kwargs){
-                        if(kwargs.contains("rowrank")){
-                            rowrank = kwargs["rowrank"].cast<cytnx_int64>();
-                        }
-                        if(kwargs.contains("by_label")){ 
-                            by_label = kwargs["by_label"].cast<bool>();
-                        }
-                    }
-                    return self.permute(c_args,rowrank,by_label);
-                })
 
                 .def("make_contiguous",&UniTensor::contiguous)
                 .def("contiguous_",&UniTensor::contiguous_)

@@ -9,6 +9,7 @@
 
 using namespace std;
 namespace torcyx{
+        using cytnx::vec_map;
         typedef Accessor ac;
         void SparseCyTensor::Init(const std::vector<Bond> &bonds, const std::vector<cytnx_int64> &in_labels, const cytnx_int64 &rowrank, const bool &is_diag, const torch::TensorOptions &options){
             /*
@@ -196,60 +197,6 @@ namespace torcyx{
             free(buffer);
         }
 
-
-
-        /*
-        vector<Bond> SparseCyTensor::getTotalQnums(const bool &physical){
-            
-            if(physical){
-                cytnx_error_msg(true,"[Developing!]%s","\n");
-                return vector<Bond>();
-            }else{
-                vector<Bond> cb_inbonds = vec_clone(this->_bonds,this->_rowrank);
-                cytnx_uint64 N_sym;
-                for(cytnx_uint64 i=0;i<cb_inbonds.size();i++){
-                    N_sym = cb_inbonds[i].Nsym();
-
-                    #ifdef UNI_OMP
-                    #pragma omp parallel for schedule(dynamic)
-                    #endif
-                    for(cytnx_uint64 d=0;d<N_sym*cb_inbonds[i].dim();d++){
-                        cb_inbonds[i].qnums()[cytnx_uint64(d/N_sym)][d%N_sym] *= cb_inbonds[i].type()*bondType::BD_KET;
-                    }
-                    cb_inbonds[i].set_type(bondType::BD_KET);
-                }
-                if(cb_inbonds.size()>1){
-                    for(cytnx_uint64 i=1;i<cb_inbonds.size();i++){
-                        cb_inbonds[0].combineBond_(cb_inbonds[i]);
-                    }
-                }
-                
-                vector<Bond> cb_outbonds = vec_clone(this->_bonds,this->_rowrank,this->_bonds.size());
-                for(cytnx_uint64 i=0;i<cb_outbonds.size();i++){
-                    N_sym = cb_outbonds[i].Nsym();
-
-                    #ifdef UNI_OMP
-                    #pragma omp parallel for schedule(dynamic)
-                    #endif
-                    for(cytnx_uint64 d=0;d<N_sym*cb_outbonds[i].dim();d++){
-                        cb_outbonds[i].qnums()[cytnx_uint64(d/N_sym)][d%N_sym] *= cb_outbonds[i].type()*bondType::BD_BRA;
-                    }
-                    cb_outbonds[i].set_type(bondType::BD_BRA);
-                }
-                if(cb_outbonds.size()>1){
-                    for(cytnx_uint64 i=1;i<cb_outbonds.size();i++){
-                        cb_outbonds[0].combineBond_(cb_outbonds[i]);
-                    }
-                }
-                
-                vector<Bond> out(2);
-                out[0] = cb_inbonds[0]; cb_inbonds.clear();
-                out[1] = cb_outbonds[0]; cb_outbonds.clear();
-                return out;
-            }
-            
-
-        }
         void SparseCyTensor::permute_(const std::vector<cytnx_int64> &mapper, const cytnx_int64 &rowrank,const bool &by_label){
             std::vector<cytnx_uint64> mapper_u64;
             if(by_label){
@@ -301,6 +248,59 @@ namespace torcyx{
 
             //update braket form status.
             this->_is_braket_form = this->_update_braket();
+
+        }
+
+        /*
+        vector<Bond> SparseCyTensor::getTotalQnums(const bool &physical){
+            
+            if(physical){
+                cytnx_error_msg(true,"[Developing!]%s","\n");
+                return vector<Bond>();
+            }else{
+                vector<Bond> cb_inbonds = vec_clone(this->_bonds,this->_rowrank);
+                cytnx_uint64 N_sym;
+                for(cytnx_uint64 i=0;i<cb_inbonds.size();i++){
+                    N_sym = cb_inbonds[i].Nsym();
+
+                    #ifdef UNI_OMP
+                    #pragma omp parallel for schedule(dynamic)
+                    #endif
+                    for(cytnx_uint64 d=0;d<N_sym*cb_inbonds[i].dim();d++){
+                        cb_inbonds[i].qnums()[cytnx_uint64(d/N_sym)][d%N_sym] *= cb_inbonds[i].type()*bondType::BD_KET;
+                    }
+                    cb_inbonds[i].set_type(bondType::BD_KET);
+                }
+                if(cb_inbonds.size()>1){
+                    for(cytnx_uint64 i=1;i<cb_inbonds.size();i++){
+                        cb_inbonds[0].combineBond_(cb_inbonds[i]);
+                    }
+                }
+                
+                vector<Bond> cb_outbonds = vec_clone(this->_bonds,this->_rowrank,this->_bonds.size());
+                for(cytnx_uint64 i=0;i<cb_outbonds.size();i++){
+                    N_sym = cb_outbonds[i].Nsym();
+
+                    #ifdef UNI_OMP
+                    #pragma omp parallel for schedule(dynamic)
+                    #endif
+                    for(cytnx_uint64 d=0;d<N_sym*cb_outbonds[i].dim();d++){
+                        cb_outbonds[i].qnums()[cytnx_uint64(d/N_sym)][d%N_sym] *= cb_outbonds[i].type()*bondType::BD_BRA;
+                    }
+                    cb_outbonds[i].set_type(bondType::BD_BRA);
+                }
+                if(cb_outbonds.size()>1){
+                    for(cytnx_uint64 i=1;i<cb_outbonds.size();i++){
+                        cb_outbonds[0].combineBond_(cb_outbonds[i]);
+                    }
+                }
+                
+                vector<Bond> out(2);
+                out[0] = cb_inbonds[0]; cb_inbonds.clear();
+                out[1] = cb_outbonds[0]; cb_outbonds.clear();
+                return out;
+            }
+            
 
         }
 

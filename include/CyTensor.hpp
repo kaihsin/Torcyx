@@ -221,9 +221,9 @@ namespace torcyx{
                 //virtual std::string     device_str_cyx() const;
 
                 virtual void set_rowrank(const cytnx_uint64 &new_rowrank);
-                /*
                 virtual boost::intrusive_ptr<CyTensor_base> permute(const std::vector<cytnx_int64> &mapper,const cytnx_int64 &rowrank=-1, const bool &by_label=false);
                 virtual void permute_(const std::vector<cytnx_int64> &mapper, const cytnx_int64 &rowrank=-1, const bool &by_label=false);
+                /*
                 virtual boost::intrusive_ptr<CyTensor_base> contiguous_();
                 virtual boost::intrusive_ptr<CyTensor_base> contiguous();            
 
@@ -405,13 +405,13 @@ namespace torcyx{
                     cytnx_error_msg(new_rowrank >= this->_labels.size(),"[ERROR] rowrank cannot exceed the rank of CyTensor.%s","\n");
                     this->_rowrank = new_rowrank;
                 }
+                boost::intrusive_ptr<CyTensor_base> permute(const std::vector<cytnx_int64> &mapper,const cytnx_int64 &rowrank=-1,const bool &by_label=false);
+                void permute_(const std::vector<cytnx_int64> &mapper, const cytnx_int64 &rowrank=-1, const bool &by_label=false);
 
                 /*
 
                 std::string      dtype_str() const{ return Type.getname(this->_block.dtype());}
                 std::string     device_str() const{ return Device.getname(this->_block.device());}
-                boost::intrusive_ptr<CyTensor_base> permute(const std::vector<cytnx_int64> &mapper,const cytnx_int64 &rowrank=-1,const bool &by_label=false);
-                void permute_(const std::vector<cytnx_int64> &mapper, const cytnx_int64 &rowrank=-1, const bool &by_label=false);
                 boost::intrusive_ptr<CyTensor_base> contiguous_(){this->_block.contiguous_(); return boost::intrusive_ptr<CyTensor_base>(this);}
                 boost::intrusive_ptr<CyTensor_base> contiguous(){
                     // if contiguous then return self! 
@@ -887,13 +887,13 @@ namespace torcyx{
                     this->_rowrank = new_rowrank;
                     this->_is_braket_form = this->_update_braket();
                 }
-                /*
                 void permute_(const std::vector<cytnx_int64> &mapper, const cytnx_int64 &rowrank=-1,const bool &by_label=false);
                 boost::intrusive_ptr<CyTensor_base> permute(const std::vector<cytnx_int64> &mapper,const cytnx_int64 &rowrank=-1, const bool &by_label=false){
                     boost::intrusive_ptr<CyTensor_base> out = this->clone();
                     out->permute_(mapper,rowrank,by_label);
                     return out;
                 };
+                /*
                 boost::intrusive_ptr<CyTensor_base> contiguous();
                 boost::intrusive_ptr<CyTensor_base> contiguous_(){
                     if(!this->_contiguous){
@@ -1233,7 +1233,10 @@ namespace torcyx{
                     out._impl = this->_impl->to(device,non_blocking);
                     return out;
                 }
-
+                CyTensor permute(const std::vector<cytnx_int64> &mapper,const cytnx_int64 &rowrank=-1,const bool &by_label=false){CyTensor out; out._impl = this->_impl->permute(mapper,rowrank,by_label); return out;}
+                void permute_(const std::vector<cytnx_int64> &mapper,const cytnx_int64 &rowrank=-1,const bool &by_label=false){
+                    this->_impl->permute_(mapper,rowrank,by_label);
+                }
                 /*
 
                 template<class T>
@@ -1251,10 +1254,6 @@ namespace torcyx{
                     CyTensor out;
                     out._impl = this->_impl->clone();
                     return out;
-                }
-                CyTensor permute(const std::vector<cytnx_int64> &mapper,const cytnx_int64 &rowrank=-1,const bool &by_label=false){CyTensor out; out._impl = this->_impl->permute(mapper,rowrank,by_label); return out;}
-                void permute_(const std::vector<cytnx_int64> &mapper,const cytnx_int64 &rowrank=-1,const bool &by_label=false){
-                    this->_impl->permute_(mapper,rowrank,by_label);
                 }
                 CyTensor contiguous() const{
                     CyTensor out;

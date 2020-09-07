@@ -11,6 +11,7 @@
 namespace torcyx{
         using cytnx::vec_unique;       
         using cytnx::vec_range; 
+        using cytnx::vec_map;
         //namespace utils_internal=cytnx::utils_internal;
         //void DenseCyTensor::Init(const std::vector<Bond> &bonds, const std::vector<cytnx_int64> &in_labels, const cytnx_int64 &rowrank, const unsigned int &dtype,const int &device, const bool &is_diag){
         //        auto option = type_converter.Cy2Tor(dtype,device);
@@ -247,9 +248,6 @@ namespace torcyx{
             free(rlbl);
             free(buffer);
         }
-
-
-        /*
         boost::intrusive_ptr<CyTensor_base> DenseCyTensor::permute(const std::vector<cytnx_int64> &mapper,const cytnx_int64 &rowrank, const bool &by_label){
             boost::intrusive_ptr<CyTensor_base> out = this->clone();
             out->permute_(mapper,rowrank,by_label);
@@ -282,7 +280,8 @@ namespace torcyx{
                 
                 this->_bonds = vec_map(vec_clone(this->bonds()),mapper_u64);// this will check validity
                 this->_labels = vec_map(this->labels(),mapper_u64);
-                this->_block.permute_(mapper_u64);
+                this->_block = this->_block.permute(std::vector<int64_t>(mapper_u64.begin(),mapper_u64.end()));
+
                 if(rowrank>=0){
                     cytnx_error_msg((rowrank>this->_bonds.size()) || (rowrank < 0),"[ERROR] rowrank cannot exceed the rank of CyTensor, and should be >=0.%s","\n");
                     this->_rowrank = rowrank;
@@ -292,6 +291,8 @@ namespace torcyx{
             
         };
 
+
+        /*
 
         void DenseCyTensor::reshape_(const std::vector<cytnx_int64> &new_shape, const cytnx_uint64 &rowrank){
             cytnx_error_msg(this->is_tag(),"[ERROR] cannot reshape a tagged CyTensor. suggestion: use untag() first.%s","\n");
