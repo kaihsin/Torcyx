@@ -70,6 +70,8 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><p>Torcyx is a extension of Cytnx Tensor network library with ML capability base on pytorch.</p>
+<h1>API documentation:</h1>
+<p><a href="https://kaihsin.github.io/Torcyx/docs/html/index.html">https://kaihsin.github.io/Torcyx/docs/html/index.html</a></p>
 <h1>Simple demo:</h1>
 <ul>
 <li>C++ API: <div class="fragment"><div class="line">{c++}</div><div class="line">    #include &quot;torcyx.hpp&quot;</div><div class="line">    #include &lt;torch/torch.h&gt;</div><div class="line">    #include &lt;iostream&gt;</div><div class="line"></div><div class="line">    using namespace std;</div><div class="line">    int main(int argc, char* argv[]){</div><div class="line">       auto A = torch::ones({3,4});</div><div class="line">       auto cA = torcyx::CyTensor(A,1);</div><div class="line"></div><div class="line">       cA.print_diagram();</div><div class="line">       cout &lt;&lt; cA &lt;&lt; endl;</div><div class="line"></div><div class="line">    } </div></div><!-- fragment --></li>
