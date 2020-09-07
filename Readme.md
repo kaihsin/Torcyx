@@ -4,6 +4,7 @@
 
 # Simple demo:
 
+* C++ API:
 ```c++
     #include "torcyx.hpp"
     #include <torch/torch.h>
@@ -18,6 +19,17 @@
        cout << cA << endl;
 
     } 
+```
+
+* Python API:
+```python
+    import torcyx
+    import torch
+    
+    A = torch.ones([3,4])
+    cA = torcyx.CyTensor(A,1)
+    cA.print_diagram()
+    print(cA)
 ```
 
 * Output:
