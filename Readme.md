@@ -1,6 +1,9 @@
 # Torcyx
     Torcyx is a extension of Cytnx Tensor network library with ML capability base on pytorch. 
 
+# API documentation:
+[https://kaihsin.github.io/Torcyx/docs/html/index.html](https://kaihsin.github.io/Torcyx/docs/html/index.html)
+
 
 # Simple demo:
 
