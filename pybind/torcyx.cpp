@@ -59,18 +59,50 @@ PYBIND11_MODULE(torcyx,m){
                     return std::string("");
                 },py::call_guard<py::scoped_ostream_redirect,py::scoped_estream_redirect>())
 
-                //.def("test",[](CyTensor &self, torch::Tensor A){std::cout << A << std::endl;}); 
-                //.def("set_name",&UniTensor::set_name)
-                //.def("set_label",&UniTensor::set_label,py::arg("idx"),py::arg("new_label"))
-                //.def("set_labels",&UniTensor::set_labels,py::arg("new_labels"))
-                //.def("set_rowrank",&UniTensor::set_rowrank, py::arg("new_rowrank"))
+                .def("set_name",&CyTensor::set_name)
+                .def("set_label",&CyTensor::set_label,py::arg("idx"),py::arg("new_label"))
+                .def("set_labels",&CyTensor::set_labels,py::arg("new_labels"))
+                .def("set_rowrank",&CyTensor::set_rowrank, py::arg("new_rowrank"))
+            
+                .def("rowrank",&CyTensor::rowrank)
+                //.def("dtype",&CyTensor::dtype) // handle in python side (hips).
+                //.def("dtype_str",&UniTensor::dtype_str) // hips
+                //.def("device",&UniTensor::device) //hips
+                //.def("device_str",&UniTensor::device_str) //hips
+                .def("name",&CyTensor::name)
+                .def("is_blockform",&CyTensor::is_blockform)
 
-                //.def("rowrank",&UniTensor::rowrank)
-                //.def("dtype",&UniTensor::dtype)
-                //.def("dtype_str",&UniTensor::dtype_str)
-                //.def("device",&UniTensor::device)
-                //.def("device_str",&UniTensor::device_str)
-                //.def("name",&UniTensor::name)
+
+                .def("get_block", [](const CyTensor &self, const cytnx_uint64&idx){
+                                        return self.get_block(idx);
+                                  },py::arg("idx")=(cytnx_uint64)(0))
+
+                .def("get_block", [](const CyTensor &self, const std::vector<cytnx_int64>&qnum){
+                                        return self.get_block(qnum);
+                                  },py::arg("qnum"))
+
+                .def("get_block_",[](const CyTensor &self, const std::vector<cytnx_int64>&qnum){
+                                        return self.get_block_(qnum);
+                                  },py::arg("qnum"))
+                .def("get_block_",[](CyTensor &self, const std::vector<cytnx_int64>&qnum){
+                                        return self.get_block_(qnum);
+                                  },py::arg("qnum"))
+                .def("get_block_", [](const CyTensor &self, const cytnx_uint64&idx){
+                                        return self.get_block_(idx);
+                                  },py::arg("idx")=(cytnx_uint64)(0))
+                .def("get_block_", [](CyTensor &self, const cytnx_uint64&idx){
+                                        return self.get_block_(idx);
+                                  },py::arg("idx")=(cytnx_uint64)(0))
+                .def("get_blocks", [](const CyTensor &self){
+                                        return self.get_blocks();
+                                  })
+                .def("get_blocks_", [](const CyTensor &self){
+                                        return self.get_blocks_();
+                                  })
+                .def("get_blocks_", [](CyTensor &self){
+                                        return self.get_blocks_();
+                                  })
+
                 /*
                 .def("reshape",[](UniTensor &self, py::args args, py::kwargs kwargs)->UniTensor{
                     std::vector<cytnx::cytnx_int64> c_args = args.cast< std::vector<cytnx::cytnx_int64> >();
@@ -303,35 +335,6 @@ PYBIND11_MODULE(torcyx,m){
                 .def("make_contiguous",&UniTensor::contiguous)
                 .def("contiguous_",&UniTensor::contiguous_)
                         
-                .def("get_block", [](const UniTensor &self, const cytnx_uint64&idx){
-                                        return self.get_block(idx);
-                                  },py::arg("idx")=(cytnx_uint64)(0))
-
-                .def("get_block", [](const UniTensor &self, const std::vector<cytnx_int64>&qnum){
-                                        return self.get_block(qnum);
-                                  },py::arg("qnum"))
-
-                .def("get_block_",[](const UniTensor &self, const std::vector<cytnx_int64>&qnum){
-                                        return self.get_block_(qnum);
-                                  },py::arg("qnum"))
-                .def("get_block_",[](UniTensor &self, const std::vector<cytnx_int64>&qnum){
-                                        return self.get_block_(qnum);
-                                  },py::arg("qnum"))
-                .def("get_block_", [](const UniTensor &self, const cytnx_uint64&idx){
-                                        return self.get_block_(idx);
-                                  },py::arg("idx")=(cytnx_uint64)(0))
-                .def("get_block_", [](UniTensor &self, const cytnx_uint64&idx){
-                                        return self.get_block_(idx);
-                                  },py::arg("idx")=(cytnx_uint64)(0))
-                .def("get_blocks", [](const UniTensor &self){
-                                        return self.get_blocks();
-                                  })
-                .def("get_blocks_", [](const UniTensor &self){
-                                        return self.get_blocks_();
-                                  })
-                .def("get_blocks_", [](UniTensor &self){
-                                        return self.get_blocks_();
-                                  })
                 .def("put_block", [](UniTensor &self, const cytnx::Tensor &in, const cytnx_uint64&idx){
                                         self.put_block(in,idx);
                                   },py::arg("in"),py::arg("idx")=(cytnx_uint64)(0))

@@ -116,7 +116,13 @@ namespace torcyx{
                 cytnx_error_msg(true,"[ERROR] fatal internal, cannot call on a un-initialize CyTensor_base%s","\n");
                 return torch::kCPU;
             }
-            /*
+            torch::ScalarType  CyTensor_base::dtype() const{
+                cytnx_error_msg(true,"[ERROR] fatal internal, cannot call on a un-initialize CyTensor_base%s","\n");
+                return torch::kFloat;
+            }
+            void CyTensor_base::set_rowrank(const cytnx_uint64 &new_rowrank){
+                cytnx_error_msg(true,"[ERROR] fatal internal, cannot call on a un-initialize CyTensor_base%s","\n");
+            }
             void CyTensor_base::set_labels(const std::vector<cytnx_int64> &new_labels){
                     cytnx_error_msg(new_labels.size()!=this->_labels.size(),"[ERROR][set_labels][CyTensor] %s\n","the len(new_labels) does not match the rank of the UniTenosr");
                     //check duplicate:
@@ -124,14 +130,8 @@ namespace torcyx{
                     cytnx_error_msg(tmp.size() != new_labels.size(), "[ERROR][set_labels][CyTensor] %s\n","the input labels cannot contain duplicated element(s).");
                     this->_labels = new_labels;
             }
+            /*
              
-            void CyTensor_base::set_rowrank(const cytnx_uint64 &new_rowrank){
-                cytnx_error_msg(true,"[ERROR] fatal internal, cannot call on a un-initialize CyTensor_base%s","\n");
-            }
-            unsigned int  CyTensor_base::dtype() const{
-                cytnx_error_msg(true,"[ERROR] fatal internal, cannot call on a un-initialize CyTensor_base%s","\n");
-                return 0;
-            }
             std::string      CyTensor_base::dtype_str() const{
                 cytnx_error_msg(true,"[ERROR] fatal internal, cannot call on a un-initialize CyTensor_base%s","\n");
                 return std::string("");

@@ -14,3 +14,18 @@ def astype(self, new_type):
         return self.astype_different_type(new_type)
 """
 
+
+@add_method(CyTensor)
+def dtype(self):
+    if self.is_blockform():
+        return self.get_blocks_()[0].dtype
+    else:
+        return self.get_block_().dtype
+
+@add_method(CyTensor)
+def device(self):
+    if self.is_blockform():
+        return self.get_blocks_()[0].device
+    else:
+        return self.get_block_().device
+

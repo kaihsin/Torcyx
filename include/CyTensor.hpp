@@ -209,12 +209,10 @@ namespace torcyx{
                 virtual void to_(const torch::Device &device, const bool &non_blocking=false);
                 virtual boost::intrusive_ptr<CyTensor_base> to(const torch::Device &device, const bool &non_blocking=false);
                 
-
+                virtual torch::ScalarType    dtype() const;
                 virtual torch::Device        device() const;
                 virtual boost::intrusive_ptr<CyTensor_base> clone() const;
 
-                // [Future]
-                //virtual torch::ScalarType    scalar_type()  const;
                
                 // [Old][cyx]
                 //virtual unsigned int  dtype_cyx() const;
@@ -222,9 +220,8 @@ namespace torcyx{
                 //virtual std::string      dtype_str_cyx() const;
                 //virtual std::string     device_str_cyx() const;
 
-
-                /*
                 virtual void set_rowrank(const cytnx_uint64 &new_rowrank);
+                /*
                 virtual boost::intrusive_ptr<CyTensor_base> permute(const std::vector<cytnx_int64> &mapper,const cytnx_int64 &rowrank=-1, const bool &by_label=false);
                 virtual void permute_(const std::vector<cytnx_int64> &mapper, const cytnx_int64 &rowrank=-1, const bool &by_label=false);
                 virtual boost::intrusive_ptr<CyTensor_base> contiguous_();
@@ -396,19 +393,21 @@ namespace torcyx{
 
 
                 torch::Device device() const{return this->_block.device();}
+                torch::ScalarType  dtype() const{return this->_block.scalar_type();}
+
                 boost::intrusive_ptr<CyTensor_base> clone() const{
                     DenseCyTensor* tmp = this->clone_meta();
                     tmp->_block = this->_block.clone();
                     boost::intrusive_ptr<CyTensor_base> out(tmp);
                     return out;
                 };
-                /*
                 void set_rowrank(const cytnx_uint64 &new_rowrank){
                     cytnx_error_msg(new_rowrank >= this->_labels.size(),"[ERROR] rowrank cannot exceed the rank of CyTensor.%s","\n");
                     this->_rowrank = new_rowrank;
                 }
 
-                unsigned int  dtype() const{return this->_block.dtype();}
+                /*
+
                 std::string      dtype_str() const{ return Type.getname(this->_block.dtype());}
                 std::string     device_str() const{ return Device.getname(this->_block.device());}
                 boost::intrusive_ptr<CyTensor_base> permute(const std::vector<cytnx_int64> &mapper,const cytnx_int64 &rowrank=-1,const bool &by_label=false);
@@ -839,14 +838,14 @@ namespace torcyx{
                     #endif
                     return this->_blocks[0].device();
                 };
-
-                /*
-                unsigned int  dtype() const{
+                torch::ScalarType  dtype() const{
                     #ifdef UNI_DEBUG
                     cytnx_error_msg(this->_blocks.size()==0,"[ERROR][internal] empty blocks for blockform.%s","\n");
                     #endif
-                    return this->_blocks[0].dtype();
+                    return this->_blocks[0].scalar_type();
                 };
+
+                /*
                 std::string      dtype_str() const{
                     #ifdef UNI_DEBUG
                     cytnx_error_msg(this->_blocks.size()==0,"[ERROR][internal] empty blocks for blockform.%s","\n");
@@ -880,7 +879,6 @@ namespace torcyx{
                     boost::intrusive_ptr<CyTensor_base> out(tmp);
                     return out;
                 };
-                /*
                 void set_rowrank(const cytnx_uint64 &new_rowrank){
                     cytnx_error_msg((new_rowrank < 1) || (new_rowrank>= this->rank()),"[ERROR][SparseCyTensor] rowrank should be [>=1] and [<CyTensor.rank].%s","\n");
                     cytnx_error_msg(new_rowrank >= this->_labels.size(),"[ERROR] rowrank cannot exceed the rank of CyTensor.%s","\n");
@@ -889,6 +887,7 @@ namespace torcyx{
                     this->_rowrank = new_rowrank;
                     this->_is_braket_form = this->_update_braket();
                 }
+                /*
                 void permute_(const std::vector<cytnx_int64> &mapper, const cytnx_int64 &rowrank=-1,const bool &by_label=false);
                 boost::intrusive_ptr<CyTensor_base> permute(const std::vector<cytnx_int64> &mapper,const cytnx_int64 &rowrank=-1, const bool &by_label=false){
                     boost::intrusive_ptr<CyTensor_base> out = this->clone();
@@ -1123,7 +1122,7 @@ namespace torcyx{
                 std::vector<Bond>       &bonds() {return this->_impl->bonds();}       
                 int           cten_type() const{ return this->_impl->cten_type();}
                 std::string   cten_type_str() const {return this->_impl->cten_type_str();}
-                //unsigned int  dtype() const{ return this->_impl->dtype(); }
+                torch::ScalarType  dtype() const{ return this->_impl->dtype(); }
                 torch::Device   device() const{ return this->_impl->device();   }
                 //std::string   dtype_str() const{ return this->_impl->dtype_str();}
                 //std::string   device_str() const{ return this->_impl->device_str();}
@@ -1223,10 +1222,10 @@ namespace torcyx{
                 void print_diagram(const bool &bond_info=false){
                    this->_impl->print_diagram(bond_info);
                 }
-                /*
                 void set_rowrank(const cytnx_uint64 &new_rowrank){
                     this->_impl->set_rowrank(new_rowrank);
                 }
+                /*
 
                 template<class T>
                 T& item(){
