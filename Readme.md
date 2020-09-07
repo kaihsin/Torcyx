@@ -2,7 +2,7 @@
     Torcyx is a extension of Cytnx Tensor network library with ML capability base on pytorch. 
 
 [![Anaconda-Server Badge](https://anaconda.org/kaihsinwu/torcyx/badges/version.svg)](https://anaconda.org/kaihsinwu/torcyx) [![Anaconda-Server Badge](https://anaconda.org/kaihsinwu/torcyx/badges/platforms.svg)](https://anaconda.org/kaihsinwu/torcyx)
-[![Build Status](https://travis-ci.com/kaihsin/Torcyx_build.svg?branch=master)](https://travis-ci.com/kaihsin/Torcyx_build)
+[![Build Status](https://travis-ci.org/kaihsin/Torcyx_build.svg?branch=master)](https://travis-ci.org/kaihsin/Torcyx_build)
 
 # API documentation:
 [https://kaihsin.github.io/Torcyx/docs/html/index.html](https://kaihsin.github.io/Torcyx/docs/html/index.html)
