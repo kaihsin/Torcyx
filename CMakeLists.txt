@@ -229,11 +229,11 @@ INSTALL(TARGETS pytorcyx EXPORT pytorcyx_targets
       )
 
 
-#install(EXPORT torcyx_targets
-#        FILE TorcyxTargets.cmake
-#        NAMESPACE torcyx::
-#        DESTINATION ${INSTALL_CONFIGDIR}
-#        )
+install(EXPORT torcyx_targets
+        FILE TorcyxTargets.cmake
+        NAMESPACE torcyx::
+        DESTINATION ${INSTALL_CONFIGDIR}
+        )
 install(DIRECTORY include/
         DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
         COMPONENT headers
@@ -241,27 +241,27 @@ install(DIRECTORY include/
 
 
 #Create a ConfigVersion.cmake file
-#include(CMakePackageConfigHelpers)
-#write_basic_package_version_file(
-#        ${CMAKE_CURRENT_BINARY_DIR}/TorcyxCofigVersion.cmake
-#        VERSION ${TORCYX_VERSION}
-#        COMPATIBILITY AnyNewerVersion
-#)
+include(CMakePackageConfigHelpers)
+write_basic_package_version_file(
+        ${CMAKE_CURRENT_BINARY_DIR}/TorcyxCofigVersion.cmake
+        VERSION ${TORCYX_VERSION}
+        COMPATIBILITY AnyNewerVersion
+)
 
-#configure_package_config_file(${CMAKE_CURRENT_LIST_DIR}/cmake/TorcyxConfig.cmake.in
-#        ${CMAKE_CURRENT_BINARY_DIR}/TorcyxConfig.cmake
-#        INSTALL_DESTINATION ${INSTALL_CONFIGDIR}
-#        )
-#install(FILES
-#        ${CMAKE_CURRENT_BINARY_DIR}/TorcyxConfig.cmake
-#        ${CMAKE_CURRENT_BINARY_DIR}/TorcyxConfigVersion.cmake
-#        DESTINATION ${INSTALL_CONFIGDIR}
-#        )
+configure_package_config_file(${CMAKE_CURRENT_LIST_DIR}/cmake/TorcyxConfig.cmake.in
+        ${CMAKE_CURRENT_BINARY_DIR}/TorcyxConfig.cmake
+        INSTALL_DESTINATION ${INSTALL_CONFIGDIR}
+        )
+install(FILES
+        ${CMAKE_CURRENT_BINARY_DIR}/TorcyxConfig.cmake
+        ${CMAKE_CURRENT_BINARY_DIR}/TorcyxConfigVersion.cmake
+        DESTINATION ${INSTALL_CONFIGDIR}
+        )
 
 ##############################################
 ## Exporting from the build tree
 
-#export(EXPORT torcyx_targets FILE ${CMAKE_CURRENT_BINARY_DIR}/TorcyxTargets.cmake NAMESPACE torcyx::)
+export(EXPORT torcyx_targets FILE ${CMAKE_CURRENT_BINARY_DIR}/TorcyxTargets.cmake NAMESPACE torcyx::)
 
 export(PACKAGE Torcyx)
 
@@ -338,7 +338,7 @@ install(FILES ${CMAKE_BINARY_DIR}/cytnxpath.tmp DESTINATION ${CMAKE_INSTALL_PREF
 
 
 
-#if (BUILD_PACKAGES)
-#include("Package.cmake")
-#include(CPack)
-#endif()
+if (BUILD_PACKAGES)
+include("Package.cmake")
+include(CPack)
+endif()
