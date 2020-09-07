@@ -2851,7 +2851,6 @@ CMakeFiles/cytnx.dir/src/linalg/Lanczos.cpp.o: ../include/UniTensor.hpp
 CMakeFiles/cytnx.dir/src/linalg/Lanczos.cpp.o: ../include/cytnx_error.hpp
 CMakeFiles/cytnx.dir/src/linalg/Lanczos.cpp.o: ../include/intrusive_ptr_base.hpp
 CMakeFiles/cytnx.dir/src/linalg/Lanczos.cpp.o: ../include/linalg.hpp
-CMakeFiles/cytnx.dir/src/linalg/Lanczos.cpp.o: ../include/rand_gen.hpp
 CMakeFiles/cytnx.dir/src/linalg/Lanczos.cpp.o: ../include/random.hpp
 CMakeFiles/cytnx.dir/src/linalg/Lanczos.cpp.o: ../include/utils/cartesian.hpp
 CMakeFiles/cytnx.dir/src/linalg/Lanczos.cpp.o: ../include/utils/dynamic_arg_resolver.hpp
@@ -4780,12 +4779,6 @@ CMakeFiles/cytnx.dir/src/linalg/linalg_internal_interface.cpp.o: ../src/linalg/l
 CMakeFiles/cytnx.dir/src/linalg/linalg_internal_interface.cpp.o: ../src/linalg/linalg_internal_interface.cpp
 CMakeFiles/cytnx.dir/src/linalg/linalg_internal_interface.cpp.o: ../src/linalg/linalg_internal_interface.hpp
 
-CMakeFiles/cytnx.dir/src/rand_gen.cpp.o: ../include/Type.hpp
-CMakeFiles/cytnx.dir/src/rand_gen.cpp.o: ../include/cytnx_error.hpp
-CMakeFiles/cytnx.dir/src/rand_gen.cpp.o: ../include/intrusive_ptr_base.hpp
-CMakeFiles/cytnx.dir/src/rand_gen.cpp.o: ../include/rand_gen.hpp
-CMakeFiles/cytnx.dir/src/rand_gen.cpp.o: ../src/rand_gen.cpp
-
 CMakeFiles/cytnx.dir/src/random/Make_normal.cpp.o: ../include/Accessor.hpp
 CMakeFiles/cytnx.dir/src/random/Make_normal.cpp.o: ../include/Device.hpp
 CMakeFiles/cytnx.dir/src/random/Make_normal.cpp.o: ../include/Storage.hpp
@@ -4793,7 +4786,6 @@ CMakeFiles/cytnx.dir/src/random/Make_normal.cpp.o: ../include/Tensor.hpp
 CMakeFiles/cytnx.dir/src/random/Make_normal.cpp.o: ../include/Type.hpp
 CMakeFiles/cytnx.dir/src/random/Make_normal.cpp.o: ../include/cytnx_error.hpp
 CMakeFiles/cytnx.dir/src/random/Make_normal.cpp.o: ../include/intrusive_ptr_base.hpp
-CMakeFiles/cytnx.dir/src/random/Make_normal.cpp.o: ../include/rand_gen.hpp
 CMakeFiles/cytnx.dir/src/random/Make_normal.cpp.o: ../include/random.hpp
 CMakeFiles/cytnx.dir/src/random/Make_normal.cpp.o: ../include/utils/dynamic_arg_resolver.hpp
 CMakeFiles/cytnx.dir/src/random/Make_normal.cpp.o: ../include/utils/vec_range.hpp
@@ -4811,7 +4803,6 @@ CMakeFiles/cytnx.dir/src/random/Make_uniform.cpp.o: ../include/Tensor.hpp
 CMakeFiles/cytnx.dir/src/random/Make_uniform.cpp.o: ../include/Type.hpp
 CMakeFiles/cytnx.dir/src/random/Make_uniform.cpp.o: ../include/cytnx_error.hpp
 CMakeFiles/cytnx.dir/src/random/Make_uniform.cpp.o: ../include/intrusive_ptr_base.hpp
-CMakeFiles/cytnx.dir/src/random/Make_uniform.cpp.o: ../include/rand_gen.hpp
 CMakeFiles/cytnx.dir/src/random/Make_uniform.cpp.o: ../include/random.hpp
 CMakeFiles/cytnx.dir/src/random/Make_uniform.cpp.o: ../include/utils/dynamic_arg_resolver.hpp
 CMakeFiles/cytnx.dir/src/random/Make_uniform.cpp.o: ../include/utils/vec_range.hpp
@@ -4829,7 +4820,6 @@ CMakeFiles/cytnx.dir/src/random/normal.cpp.o: ../include/Tensor.hpp
 CMakeFiles/cytnx.dir/src/random/normal.cpp.o: ../include/Type.hpp
 CMakeFiles/cytnx.dir/src/random/normal.cpp.o: ../include/cytnx_error.hpp
 CMakeFiles/cytnx.dir/src/random/normal.cpp.o: ../include/intrusive_ptr_base.hpp
-CMakeFiles/cytnx.dir/src/random/normal.cpp.o: ../include/rand_gen.hpp
 CMakeFiles/cytnx.dir/src/random/normal.cpp.o: ../include/random.hpp
 CMakeFiles/cytnx.dir/src/random/normal.cpp.o: ../include/utils/dynamic_arg_resolver.hpp
 CMakeFiles/cytnx.dir/src/random/normal.cpp.o: ../include/utils/vec_range.hpp
@@ -4870,7 +4860,6 @@ CMakeFiles/cytnx.dir/src/random/uniform.cpp.o: ../include/Tensor.hpp
 CMakeFiles/cytnx.dir/src/random/uniform.cpp.o: ../include/Type.hpp
 CMakeFiles/cytnx.dir/src/random/uniform.cpp.o: ../include/cytnx_error.hpp
 CMakeFiles/cytnx.dir/src/random/uniform.cpp.o: ../include/intrusive_ptr_base.hpp
-CMakeFiles/cytnx.dir/src/random/uniform.cpp.o: ../include/rand_gen.hpp
 CMakeFiles/cytnx.dir/src/random/uniform.cpp.o: ../include/random.hpp
 CMakeFiles/cytnx.dir/src/random/uniform.cpp.o: ../include/utils/dynamic_arg_resolver.hpp
 CMakeFiles/cytnx.dir/src/random/uniform.cpp.o: ../include/utils/vec_range.hpp

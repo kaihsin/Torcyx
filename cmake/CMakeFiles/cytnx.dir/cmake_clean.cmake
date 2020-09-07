@@ -17,7 +17,6 @@ file(REMOVE_RECURSE
   "CMakeFiles/cytnx.dir/src/Accessor.cpp.o"
   "CMakeFiles/cytnx.dir/src/LinOp.cpp.o"
   "CMakeFiles/cytnx.dir/src/Type.cpp.o"
-  "CMakeFiles/cytnx.dir/src/rand_gen.cpp.o"
   "CMakeFiles/cytnx.dir/src/Tensor.cpp.o"
   "CMakeFiles/cytnx.dir/src/Storage.cpp.o"
   "CMakeFiles/cytnx.dir/src/Storage_base.cpp.o"

@@ -243,18 +243,18 @@ install(DIRECTORY include/
 #Create a ConfigVersion.cmake file
 #include(CMakePackageConfigHelpers)
 #write_basic_package_version_file(
-#        ${CMAKE_CURRENT_BINARY_DIR}/CytnxConfigVersion.cmake
+#        ${CMAKE_CURRENT_BINARY_DIR}/TorcyxCofigVersion.cmake
 #        VERSION ${TORCYX_VERSION}
 #        COMPATIBILITY AnyNewerVersion
 #)
 
-#configure_package_config_file(${CMAKE_CURRENT_LIST_DIR}/cmake/CytnxConfig.cmake.in
-#        ${CMAKE_CURRENT_BINARY_DIR}/CytnxConfig.cmake
+#configure_package_config_file(${CMAKE_CURRENT_LIST_DIR}/cmake/TorcyxConfig.cmake.in
+#        ${CMAKE_CURRENT_BINARY_DIR}/TorcyxConfig.cmake
 #        INSTALL_DESTINATION ${INSTALL_CONFIGDIR}
 #        )
 #install(FILES
-#        ${CMAKE_CURRENT_BINARY_DIR}/CytnxConfig.cmake
-#        ${CMAKE_CURRENT_BINARY_DIR}/CytnxConfigVersion.cmake
+#        ${CMAKE_CURRENT_BINARY_DIR}/TorcyxConfig.cmake
+#        ${CMAKE_CURRENT_BINARY_DIR}/TorcyxConfigVersion.cmake
 #        DESTINATION ${INSTALL_CONFIGDIR}
 #        )
 
@@ -280,13 +280,13 @@ endif()
 #  test
 ###########
 ##testing:
-
-project(test)
-add_executable(test ${CMAKE_CURRENT_SOURCE_DIR}/test.cpp)
-target_link_libraries(test torcyx)
-#target_link_libraries(test PRIVATE ${CYTNX_LIBRARIES})
-set_property(TARGET test PROPERTY CXX_STANDARD 14)
-
+if(BUILD_TEST)
+  project(test)
+  add_executable(test ${CMAKE_CURRENT_SOURCE_DIR}/test.cpp)
+  target_link_libraries(test torcyx)
+  #target_link_libraries(test PRIVATE ${CYTNX_LIBRARIES})
+  set_property(TARGET test PROPERTY CXX_STANDARD 14)
+endif()
 
 set(libname "${CMAKE_SHARED_LIBRARY_PREFIX}torcyx.${TORCYX_VERSION}${CMAKE_SHARED_LIBRARY_SUFFIX}")
 

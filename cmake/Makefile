@@ -2990,33 +2990,6 @@ src/linalg/linalg_internal_interface.cpp.s:
 	$(MAKE) -f CMakeFiles/cytnx.dir/build.make CMakeFiles/cytnx.dir/src/linalg/linalg_internal_interface.cpp.s
 .PHONY : src/linalg/linalg_internal_interface.cpp.s
 
-src/rand_gen.o: src/rand_gen.cpp.o
-
-.PHONY : src/rand_gen.o
-
-# target to build an object file
-src/rand_gen.cpp.o:
-	$(MAKE) -f CMakeFiles/cytnx.dir/build.make CMakeFiles/cytnx.dir/src/rand_gen.cpp.o
-.PHONY : src/rand_gen.cpp.o
-
-src/rand_gen.i: src/rand_gen.cpp.i
-
-.PHONY : src/rand_gen.i
-
-# target to preprocess a source file
-src/rand_gen.cpp.i:
-	$(MAKE) -f CMakeFiles/cytnx.dir/build.make CMakeFiles/cytnx.dir/src/rand_gen.cpp.i
-.PHONY : src/rand_gen.cpp.i
-
-src/rand_gen.s: src/rand_gen.cpp.s
-
-.PHONY : src/rand_gen.s
-
-# target to generate assembly for a file
-src/rand_gen.cpp.s:
-	$(MAKE) -f CMakeFiles/cytnx.dir/build.make CMakeFiles/cytnx.dir/src/rand_gen.cpp.s
-.PHONY : src/rand_gen.cpp.s
-
 src/random/Make_normal.o: src/random/Make_normal.cpp.o
 
 .PHONY : src/random/Make_normal.o
@@ -4261,9 +4234,6 @@ help:
 	@echo "... src/linalg/linalg_internal_interface.o"
 	@echo "... src/linalg/linalg_internal_interface.i"
 	@echo "... src/linalg/linalg_internal_interface.s"
-	@echo "... src/rand_gen.o"
-	@echo "... src/rand_gen.i"
-	@echo "... src/rand_gen.s"
 	@echo "... src/random/Make_normal.o"
 	@echo "... src/random/Make_normal.i"
 	@echo "... src/random/Make_normal.s"
