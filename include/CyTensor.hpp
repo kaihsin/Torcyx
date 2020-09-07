@@ -379,7 +379,7 @@ namespace torcyx{
 
 
                 void to_(const torch::Device &device,const bool &non_blocking=false){
-                    this->_block.to(device,non_blocking,false);
+                    this->_block = this->_block.to(device,non_blocking,false);
                 }
                 boost::intrusive_ptr<CyTensor_base> to(const torch::Device &device, const bool &non_blocking=false){
                     if(this->device() == device){
@@ -861,7 +861,7 @@ namespace torcyx{
                 */
                 void to_(const torch::Device &device, const bool &non_blocking=false){
                     for(cytnx_uint64 i=0;i<this->_blocks.size();i++){
-                        this->_blocks[i].to(device,non_blocking,false);
+                        this->_blocks[i] = this->_blocks[i].to(device,non_blocking,false);
                     }
                 };
                 boost::intrusive_ptr<CyTensor_base> to(const torch::Device &device, const bool &non_blocking=false){
@@ -1225,6 +1225,15 @@ namespace torcyx{
                 void set_rowrank(const cytnx_uint64 &new_rowrank){
                     this->_impl->set_rowrank(new_rowrank);
                 }
+
+
+                void to_(const torch::Device &device, const bool &non_blocking=false){this->_impl->to_(device,non_blocking);}
+                CyTensor to(const torch::Device &device, const bool &non_blocking=false) const{ 
+                    CyTensor out;
+                    out._impl = this->_impl->to(device,non_blocking);
+                    return out;
+                }
+
                 /*
 
                 template<class T>
@@ -1238,12 +1247,6 @@ namespace torcyx{
                 }
 
 
-                void to_(const int &device){this->_impl->to_(device);}
-                CyTensor to(const int &device) const{ 
-                    CyTensor out;
-                    out._impl = this->_impl->to(device);
-                    return out;
-                }
                 CyTensor clone() const{
                     CyTensor out;
                     out._impl = this->_impl->clone();

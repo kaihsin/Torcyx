@@ -102,7 +102,13 @@ PYBIND11_MODULE(torcyx,m){
                 .def("get_blocks_", [](CyTensor &self){
                                         return self.get_blocks_();
                                   })
-
+                .def("c_to_",[](CyTensor &self,py::object device,const bool &non_blocking){
+                                    self.to_(torch::python::detail::py_object_to_device(device),non_blocking);
+                                },py::arg("device"),py::arg("non_blocking")=false)
+                .def("c_to" ,[](CyTensor &self,py::object device, const bool &non_blocking){
+                                    //cytnx_error_msg(self.device() == device, "[ERROR][pybind][to_diffferent_device] same device for to() should be handle in python side.%s","\n");
+                                    return self.to(torch::python::detail::py_object_to_device(device),non_blocking);
+                                     }, py::arg("device"),py::arg("non_blocking")=false)
                 /*
                 .def("reshape",[](UniTensor &self, py::args args, py::kwargs kwargs)->UniTensor{
                     std::vector<cytnx::cytnx_int64> c_args = args.cast< std::vector<cytnx::cytnx_int64> >();
@@ -292,11 +298,6 @@ PYBIND11_MODULE(torcyx,m){
                     return self.bonds();
                     })
                 .def("shape",&UniTensor::shape)
-                .def("to_",&UniTensor::to_)
-                .def("to_different_device" ,[](UniTensor &self,const cytnx_int64 &device){
-                                                    cytnx_error_msg(self.device() == device, "[ERROR][pybind][to_diffferent_device] same device for to() should be handle in python side.%s","\n");
-                                                    return self.to(device);
-                                                } , py::arg("device"))
                 .def("clone",&UniTensor::clone)
                 .def("__copy__",&UniTensor::clone)
                 .def("__deepcopy__",&UniTensor::clone)

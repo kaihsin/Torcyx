@@ -29,3 +29,15 @@ def device(self):
     else:
         return self.get_block_().device
 
+@add_method(CyTensor)
+def to(self,device,non_blocking=False):
+    if(self.device()== device):
+        return self
+    else:
+        return self.c_to(device,non_blocking)
+
+
+@add_method(CyTensor)
+def to_(self,device,non_blocking=False):
+   self.c_to_(device,non_blocking)
+
