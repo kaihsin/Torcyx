@@ -152,7 +152,11 @@ string(REPLACE " " ";" CYTNX_LINK "${CYTNX_LINK_C}")
 set(CYTNX_LIBRARIES "${CYTNX_LIBRARIES};${CYTNX_LINK}")
 message(STATUS "${CYTNX_LIBRARIES}")
 
+if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+target_link_libraries(torcyx ${TORCH_LIBRARIES} ${TORCH_INSTALL_PREFIX}/lib/libtorch_python.dylib)
+else()
 target_link_libraries(torcyx ${TORCH_LIBRARIES} ${TORCH_INSTALL_PREFIX}/lib/libtorch_python.so)
+endif()
 target_link_libraries(torcyx ${CYTNX_LIBRARIES})
 set_property(TARGET torcyx PROPERTY CXX_STANDARD 14)
 
