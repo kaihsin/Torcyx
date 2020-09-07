@@ -73,6 +73,36 @@ namespace torcyx{
 
         }
 
+        torch::ScalarType TypeCvrt_class::tStr2Tor_ST(const std::string &dtype_str){
+
+            if(dtype_str=="torch.float64"){
+                return torch::kFloat64;
+            }else if(dtype_str=="torch.float32"){
+                return torch::kFloat32;
+            }else if(dtype_str=="torch.int64"){
+                return torch::kInt64;
+            }else if(dtype_str=="torch.int32"){
+                return torch::kInt32;
+            }else if(dtype_str=="torch.int64"){
+                return torch::kInt64;
+            }else{
+                cytnx_error_msg(true,"[ERROR] Invalid Torch type that is not support in cytnx.%s","\n");
+            }
+
+        }
+
+        torch::Device TypeCvrt_class::tStr2Tor_Dv(const std::string &device_str){
+
+            if(device_str=="torch.cpu"){
+                return torch::kCPU;
+            }else{
+                cytnx_error_msg(true,"[ERROR] Invalid Torch type that is not support in cytnx.%s","\n");
+            }
+
+        }
+
+
+
         TypeCvrt_class type_converter;
 
 }

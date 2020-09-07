@@ -39,6 +39,8 @@ namespace torcyx{
                 TypeCvrt_class();
                 torch::TensorOptions Cy2Tor(const unsigned int &dtype, const int &device);
                 unsigned int Tor2Cy(const torch::ScalarType &scalar_type);
+                torch::ScalarType tStr2Tor_ST(const std::string &dtype_str);
+                torch::Device tStr2Tor_Dv(const std::string &device_str);
 
         };
         extern TypeCvrt_class type_converter;

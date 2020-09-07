@@ -1087,9 +1087,6 @@ namespace torcyx{
                 //@}
 
 
-                //CyTensor(const std::vector<Bond> &bonds, const std::vector<cytnx_int64> &in_labels={}, const cytnx_int64 &rowrank=-1, const unsigned int &dtype=Type.Double, const int &device = Device.cpu, const bool &is_diag=false): _impl(new CyTensor_base()){
-                //    this->Init(bonds,in_labels,rowrank,dtype,device,is_diag);
-                //}
                 CyTensor(const std::vector<Bond> &bonds, const std::vector<cytnx_int64> &in_labels={}, const cytnx_int64 &rowrank=-1, const bool &is_diag=false, const torch::TensorOptions &options=torch::TensorOptions().dtype(torch::kFloat64).device(torch::kCPU)): _impl(new CyTensor_base()){
                     this->Init(bonds,in_labels,rowrank,is_diag,options);
                 }

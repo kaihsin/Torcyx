@@ -13,6 +13,4 @@ def astype(self, new_type):
     else:
         return self.astype_different_type(new_type)
 """
-@add_method(CyTensor)
-def __init__(self,bonds,labels=[],rowrank=-1,is_diag=False,dtype=torch.float32,device=torch.device("cpu"),requires_grad=False):
-    self.c_init(bonds,labels,rowrank,is_diag,str(dtype),str(device),requires_grad);
+
