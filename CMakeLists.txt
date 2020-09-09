@@ -133,9 +133,16 @@ COMMAND bash -c "python -c 'import sys,os;sys.path.append(os.path.expanduser(\"$
 OUTPUT_VARIABLE CYTNX_INC_PATH_C
 )
 string(REGEX REPLACE "\n$" "" CYTNX_INC_PATH "${CYTNX_INC_PATH_C}")
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -I${CYTNX_INC_PATH} -pthread")
-message(STATUS ${CMAKE_CXX_FLAGS})
 #--------
+execute_process (
+COMMAND bash -c "python -c 'import sys,os;sys.path.append(os.path.expanduser(\"${CYTNX_PATH}\"));import cytnx;print(cytnx.__cpp_flags__)'"
+OUTPUT_VARIABLE CYTNX_INC_FLAGS_C
+)
+string(REGEX REPLACE "\n$" "" CYTNX_INC_FLAGS "${CYTNX_INC_FLAGS_C}")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -I${CYTNX_INC_PATH} -pthread ${CYTNX_INC_FLAGS}")
+message(STATUS ${CMAKE_CXX_FLAGS})
+#---------
+
 execute_process (
 COMMAND bash -c "python -c 'import sys,os;sys.path.append(os.path.expanduser(\"${CYTNX_PATH}\"));import cytnx;print(cytnx.__cpp_lib__)'"
 OUTPUT_VARIABLE CYTNX_LIB_C
@@ -247,7 +254,7 @@ install(DIRECTORY include/
 #Create a ConfigVersion.cmake file
 include(CMakePackageConfigHelpers)
 write_basic_package_version_file(
-        ${CMAKE_CURRENT_BINARY_DIR}/TorcyxCofigVersion.cmake
+        ${CMAKE_CURRENT_BINARY_DIR}/TorcyxConfigVersion.cmake
         VERSION ${TORCYX_VERSION}
         COMPATIBILITY AnyNewerVersion
 )
